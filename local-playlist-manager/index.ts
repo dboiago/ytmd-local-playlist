@@ -409,12 +409,24 @@ export default createPlugin({
       };
 
       // Wait for page to load, then create UI
+      const initUI = () => {
+        // Wait for the main content area to be ready
+        const checkAndCreate = setInterval(() => {
+          const mainContent = document.querySelector('ytmusic-app');
+          if (mainContent) {
+            clearInterval(checkAndCreate);
+            createPlaylistUI();
+          }
+        }, 500);
+        
+        // Timeout after 10 seconds
+        setTimeout(() => clearInterval(checkAndCreate), 10000);
+      };
+
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', () => {
-          setTimeout(createPlaylistUI, 1000);
-        });
+        document.addEventListener('DOMContentLoaded', initUI);
       } else {
-        setTimeout(createPlaylistUI, 1000);
+        initUI();
       }
     },
 
