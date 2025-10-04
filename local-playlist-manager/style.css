@@ -1,10 +1,14 @@
 .local-playlist-manager {
-  background: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  bottom: 80px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.95);
   border-radius: 8px;
   padding: 16px;
-  margin: 16px;
   max-width: 400px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
 }
 
 .playlist-manager-header {
